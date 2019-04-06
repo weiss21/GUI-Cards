@@ -249,7 +249,7 @@ class Card
    if (card == null){
      return false;
    } 
-   return (this.value == card.value && this.suit == card.suit);
+   return (this.value == card.value && this.suit == card.suit && this.errorFlag == card.errorFlag);
  }
 }
 
