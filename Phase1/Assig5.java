@@ -21,7 +21,7 @@ public class Assig5
 
    static final int NUM_CARD_IMAGES = 57; // 52 + 4 jokers + 1 back-of-card image
    static Icon[] icon = new ImageIcon[NUM_CARD_IMAGES];
-   private static final String directory = String.format("%s%s", System.getProperty("user.dir"), "\\images\\");
+   private static final String directory = String.format("%s%s", System.getProperty("user.dir"), "/images/");
    private static final String[] value =
    { "A", "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "X" };
    private static final String[] suit =
