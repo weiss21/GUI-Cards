@@ -38,11 +38,13 @@ public class Assig5
       {
          for (int v = 0; v < value.length; v++)
          {
-            icon[i++] = new ImageIcon(directory + turnIntIntoCardValue(v) + turnIntIntoCardSuit(s) + ".gif");
+            if (i < NUM_CARD_IMAGES)
+               icon[i++] = new ImageIcon(directory + turnIntIntoCardValue(v) + turnIntIntoCardSuit(s) + ".gif");
             // i iterates the icon array every time card value is added.
          }
       }
-      icon[56] = new ImageIcon(directory + "BK.gif");// BK is unique, so it is appended last.
+      if (i < NUM_CARD_IMAGES)
+         icon[i] = new ImageIcon(directory + "BK.gif");// BK is unique, so it is appended last.
    }
 
    // turns 0 - 13 into "A", "2", "3", ... "Q", "K", "X"
