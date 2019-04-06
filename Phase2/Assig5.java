@@ -8,10 +8,17 @@ CardTable and GUICard Classes
 
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.border.*;
 
 public class Assig5
 {
-   
+   static int NUM_CARDS_PER_HAND = 7;
+   static int NUM_PLAYERS = 2;
+   static JLable[] computerLabels = new JLabel[NUM_CARDS_PER_HAND];
+   static JLabel[] humanLabels = new JLabel[NUM_CARDS_PER_HAND];
+   static JLabel[] playerCardLables = new JLabel[NUM_PLAYERS];
+   static JLabel[] playLabelText = newJLabel[num_players];
+	
    public static void main(String[] args)
    {
       
@@ -25,6 +32,8 @@ class CardTable extends JFrame
    static int MAX_PLAYERS = 2;  // for now, we only allow 2 person games
    private int numCardsPerHand;
    private int numPlayers;
+   
+   public JPanel pn1ComputerHand, pn1HumandHand, pn1PlayerAre;
 
    //CardTable(String title, int numCardsPerHand, int numPlayers) - 
    //The constructor filters input, 
