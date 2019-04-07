@@ -6,7 +6,7 @@ CardTable and GUICard Classes
 */
 import javax.swing.*;
 import java.awt.*;
-import javax.swing.border.*;
+
 
 public class Assign5
 {
@@ -14,13 +14,14 @@ public class Assign5
    static int NUM_PLAYERS = 2;
    static JLabel[] computerLabels = new JLabel[NUM_CARDS_PER_HAND];
    static JLabel[] humanLabels = new JLabel[NUM_CARDS_PER_HAND];
-   static JLabel[] playerCardLabels = new JLabel[NUM_PLAYERS];
+   static JLabel[] playedCardLabels = new JLabel[NUM_PLAYERS];
    static JLabel[] playLabelText = new JLabel[NUM_PLAYERS];
     
    public static void main(String[] args)
    {
       int k;
       Icon tempIcon;
+      JLabel tempLabel;
       
       // establish main frame in which program will run
       CardTable myCardTable 
@@ -42,50 +43,57 @@ public class Assign5
       for (k = 0; k < NUM_PLAYERS; k++)
       {
           tempIcon = GUICard.getIcon(generateRandomCard());
-          playerCardLabels[k] = new JLabel(tempIcon);
+          playedCardLabels[k] = new JLabel(tempIcon);
           if (k > 0)
             playLabelText[k] = new JLabel("You" , JLabel.CENTER);
           else
             playLabelText[k] = new JLabel("Computer ", JLabel.CENTER);
       }
   
-      // ADD LABELS TO PANELS -----------------------------------------
-      for ( k = 0; k < NUM_CARDS_PER_HAND; k++)
+      // ADD LABELS TO PANELS - Human and Computer
+      myCardTable.pn1ComputerHand.setLayout(new GridLayout(0, NUM_CARDS_PER_HAND));
+      myCardTable.pn1HumanHand.setLayout(new GridLayout(0, NUM_CARDS_PER_HAND));
+      for (k = 0; k < NUM_CARDS_PER_HAND; k++)
       {
           myCardTable.pn1ComputerHand.add(computerLabels[k]);
-          myCardTable.pn1HumanHand.add(playerCardLabels[k]);
+          myCardTable.pn1HumanHand.add(humanLabels[k]);
       }
      
       // add labels to main play area
-      for ( k = 0; k < NUM_PLAYERS; k++)
-      {
+      myCardTable.pn1PlayerArea.setLayout(new GridLayout(NUM_PLAYERS, 2));
+      for (k = 0; k < NUM_PLAYERS; k++)
+      {  
+          tempIcon = GUICard.getIcon(generateRandomCard());
+          myCardTable.pn1PlayerArea.add(new JLabel(tempIcon), 0, k);
+          myCardTable.pn1PlayerArea.add(new JLabel(("Player " + (k + 1)), SwingConstants.CENTER), -1, k);
+         
+         /*
           if ( k < NUM_PLAYERS)
-             myCardTable.pn1PlayerArea.add(playerCardLabels[k]);
+             myCardTable.pn1PlayerArea.add(playedCardLabels[k]);
           else
             myCardTable.pn1PlayerArea.add(playLabelText[k - NUM_PLAYERS]);
+            */
       }  
-      
-      //ad
         
       // show everything to the user
       myCardTable.setVisible(true);
 
    }
 
-// and two random cards in the play region (simulating a computer/hum ply)
-public static Card generateRandomCard()
-{
-  Card card = new Card();
-  int cardVal = (int) (Math.random() % 14);
-  int suitVal =  (int) (Math.random() % 4);
-  //card.set(GUICard.turnIntIntoCardValue(cardVal), 
+   // and two random cards in the play region (simulating a computer/hum ply)
+   public static Card generateRandomCard()
+   {
+     Card card = new Card();
+     int cardVal = (int) (Math.random() % 14);
+      int suitVal =  (int) (Math.random() % 4);
+     //card.set(GUICard.turnIntIntoCardValue(cardVal), 
            //GUICard.turnIntIntoCardSuit(suitVal));     
   
-  //card.value = GUICard.turnIntIntoCardValue(cardVal);
-  //card.suit = Card.valueOf(suitVal);
+     //card.value = GUICard.turnIntIntoCardValue(cardVal);
+     //card.suit = Card.valueOf(suitVal);
 
-  return card;
-}
+     return card;
+   }
 }
 
 
@@ -110,12 +118,17 @@ class CardTable extends JFrame
    public CardTable(String title, int numCardsPerHand, int numPlayers)//NEED HELP ON THIS ONE
    {
       //filler for now
-      title = "";
+      super("Card Game");
       this.numCardsPerHand = numCardsPerHand;
       this.numPlayers = numPlayers;
       this.pn1ComputerHand = new JPanel();
       this.pn1HumanHand = new JPanel();
-      this.pn1PlayerArea = new JPanel(); 
+      this.pn1PlayerArea = new JPanel();
+      this.setLayout(new BorderLayout());
+      this.add(pn1ComputerHand, BorderLayout.NORTH);
+      this.add(pn1PlayerArea, BorderLayout.CENTER);
+      this.add(pn1HumanHand, BorderLayout.SOUTH);
+      
    }
    
    //Accessors for the one instance members.
