@@ -3,9 +3,10 @@
 * Assignment 5
 * Phase 1: Reading and Displaying the .gif Files
 * Use what you learned about how to instantiate an Icon object to represent any 
-* .gif, .jpg or other image file on your disk and then place that Icon on a JLabel.  
-* In Phase 1, we simply create an array of 57 JLabels, attach the 57 .gif files 
-* to them, and display the labels, unstructured, in a single JFrame. 
+* .gif, .jpg or other image file on your disk and then place that Icon on 
+* a JLabel. In Phase 1, we simply create an array of 57 JLabels, attach the 
+* 57 .gif files to them, and display the labels, unstructured, in 
+* a single JFrame. 
 */
 
 package GUICard;
@@ -19,18 +20,21 @@ public class Assig5
    // normally we would not have a separate label for each card, but
    // if we want to display all at once using labels, we need to.
 
-   static final int NUM_CARD_IMAGES = 57; // 52 + 4 jokers + 1 back-of-card image
+   // 52 + 4 jokers + 1 back-of-card image
+   static final int NUM_CARD_IMAGES = 57;
    static Icon[] icon = new ImageIcon[NUM_CARD_IMAGES];
-   private static final String directory = String.format("%s%s", System.getProperty("user.dir"), "/images/");
+   private static final String directory = String.format("%s%s", 
+      System.getProperty("user.dir"), "/images/");
    private static final String[] value =
    { "A", "2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "X" };
    private static final String[] suit =
    { "C", "D", "H", "S" };
 
-   // build the file names ("AC.gif", "2C.gif", "3C.gif", "TC.gif", etc.)
-   // in a SHORT loop. For each file name, read it in and use it to
-   // instantiate each of the 57 Icons in the icon[] array.
-
+   /*
+    * This method builds the file names of all the card .gif images and 
+    * instantiates ImageIcon objects for them. The icons are stored in
+    * an array.
+    */
    static void loadCardIcons()
    {
       int i = 0;
@@ -39,25 +43,34 @@ public class Assig5
          for (int v = 0; v < value.length; v++)
          {
             if (i < NUM_CARD_IMAGES)
-               icon[i++] = new ImageIcon(directory + turnIntIntoCardValue(v) + turnIntIntoCardSuit(s) + ".gif");
+               icon[i++] = new ImageIcon(directory + turnIntIntoCardValue(v) + 
+                  turnIntIntoCardSuit(s) + ".gif");
             // i iterates the icon array every time card value is added.
          }
       }
       if (i < NUM_CARD_IMAGES)
-         icon[i] = new ImageIcon(directory + "BK.gif");// BK is unique, so it is appended last.
+         //BK is unique, so it is appended last.
+         icon[i] = new ImageIcon(directory + "BK.gif");
    }
 
-   // turns 0 - 13 into "A", "2", "3", ... "Q", "K", "X"
+   /*
+    * This method receives an integer and converts it to a corresponding
+    * Card value. The value is returned as a String.
+    */
    static String turnIntIntoCardValue(int k)
    {
+      //check that input is within parameters
       if (k < 0 || k > 13)
       {
-         return ""; // if k is out of parameters
+         return "";
       }
       return value[k];
    }
 
-   // turns 0 - 3 into "C", "D", "H", "S"
+   /*
+    * This method receives an integer can converts it to a corresponding
+    * Card suit. The value is returned as a String.
+    */
    static String turnIntIntoCardSuit(int j)
    {
       if (j < 0 || j > 3)
@@ -67,11 +80,14 @@ public class Assig5
       return suit[j];
    }
 
-   // a simple main to throw all the JLabels out there for the world to see
+   /*
+    * This main creates a JFrame and fills it with the caerd ImageIcons.
+    */
    public static void main(String[] args)
    {
       int k;
-      System.out.println(directory);// test directory String and try to place image folder here
+      // print out the directory of the image folder
+      System.out.println(directory);
 
       // prepare the image icon array
       loadCardIcons();
