@@ -16,7 +16,6 @@ public class Assign5
 {
    static int NUM_CARDS_PER_HAND = 7;
    static int NUM_PLAYERS = 2;
-   static String[] players = {"Computer", "You"};
    static JLabel[] computerLabels = new JLabel[NUM_CARDS_PER_HAND];
    static JLabel[] humanLabels = new JLabel[NUM_CARDS_PER_HAND];
    static JLabel[] playedCardLabels = new JLabel[NUM_PLAYERS];
@@ -57,16 +56,27 @@ public class Assign5
            myCardTable.pn1HumanHand.add(humanLabels[k]);          
        }
       
+       //create play area text labels
+       playLabelText[0] = new JLabel("Computer", JLabel.CENTER);
+       for (int i = 1; i < NUM_PLAYERS; i++)
+       {
+          playLabelText[i] = new JLabel("Player " + i, JLabel.CENTER);
+       }
+       
        // add labels to main play area
-       myCardTable.pn1PlayerArea.setLayout(new GridLayout(2, 2));
+       myCardTable.pn1PlayerArea.setLayout(new GridLayout(2, NUM_PLAYERS));
+       
        for (k = 0; k < NUM_PLAYERS; k++)
        {  
-           
-           myCardTable.pn1PlayerArea.add(new JLabel((players[k]), SwingConstants.CENTER), -1, k);         
-           tempIcon = GUICard.getIcon(generateRandomCard());
-           myCardTable.pn1PlayerArea.add(new JLabel(tempIcon), 0, k);
+          tempIcon = GUICard.getIcon(generateRandomCard());
+           myCardTable.pn1PlayerArea.add(new JLabel(tempIcon));         
        }  
-         
+       
+       for (k = 0; k < NUM_PLAYERS; k++)
+          myCardTable.pn1PlayerArea.add(playLabelText[k]);
+
+       
+       
        // show everything to the user
        myCardTable.setVisible(true);
 
