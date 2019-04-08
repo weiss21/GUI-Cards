@@ -1,4 +1,3 @@
-
 /* Team 9 - W. Robleh, M. Mariscal, T. Doan, Y. Nikulyak, C. Piwarski
  * CST338 - Software Design
  * Assignment 5
@@ -579,21 +578,12 @@ class Card
    }
 
    /*
-    * This method returns a character array containing all the 
-    * values for Card objects.
-    */
-   public static char[] valueRanks()
-   {
-      return Arrays.copyOf(Card.cards, Card.cards.length);
-   }
-
-   /*
     * This method receives an array of Card objects and sorts them
     * based on their Suit and value.
     */
    static void arraySort(Card[] cards, int arraySize)
    {
-      char[] values = valueRanks();
+      char[] values = valueRanks;
       boolean swapped = true;
 
       while (swapped)
