@@ -551,13 +551,45 @@ class Card
    }
 
    /*
+    * This methods receives Card object and returns a suit value to help
+    * with cardvalue
+    */
+   public static int getSuitValue(Card cards)
+   {
+      if (cards == null)
+      {
+         return -1;
+      }
+      int number = -1;
+      switch (cards.getSuit())
+      {
+      case SPADES:
+         number = 0;
+         break;
+      case HEARTS:
+         number = 14;
+         break;
+      case DIAMONDS:
+         number = 28;
+         break;
+      case CLUBS:
+         number = 42;
+         break;
+      }
+      return number;
+   }
+   
+
+   /*
     * This method receives a Card and returns an integer in comparison
     * to the current Card.
     */
    public static int cardValue(Card card)
    {
-      return Card.valueRanks.length - 
-         new String(valueRanks).indexOf(card.getValue());
+
+      //return Card.valueRanks.length - new String(valueRanks).indexOf(card.getValue());
+      return GUICard.turnCardValueIntoInt(card) + Card.getSuitValue(card);
+      
    }
 
    /*
@@ -581,40 +613,19 @@ class Card
     * This method receives an array of Card objects and sorts them
     * based on their Suit and value.
     */
-   static void arraySort(Card[] cards, int arraySize)
+    static void arraySort(final Card[] cards, int arraySize)
    {
-      char[] values = valueRanks;
-      boolean swapped = true;
+      Card tempCard;
 
-      while (swapped)
-      {
-         swapped = false;
-         for (int i = 0; i < arraySize - 1; i++)
-         {
-            char first = cards[i].getValue();
-            char second = cards[i + 1].getValue();
-            char smaller = ' ';
-            for (int j = 0; j < values.length; j++)
-            {
-               if (values[j] == first)
-               {
-                  smaller = first;
-                  break;
-               }
-               if (values[j] == second)
-               {
-                  smaller = second;
-                  break;
-               }
+      for(int i = 0; i < arraySize; i++){
+         for(int j = 1; j < arraySize - i; j++){
+            if(cardValue(cards[j-1]) > cardValue(cards[j])){
+               tempCard = cards[j-1];
+                cards[j-1] = cards[j];
+                cards[j] = tempCard;
             }
-            if (smaller == second)
-            {
-               Card temp = cards[i];
-               cards[i] = cards[i + 1];
-               cards[i + 1] = temp;
-               swapped = true;
-            }
-         }
+        }
+
       }
    }
 }
