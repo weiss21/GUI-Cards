@@ -374,8 +374,7 @@ class GUICard
  */
 class Card
 {  
-   private static char[] CARD_VALUES = {'A', '2', '3', '4', '5', '6', '7', 
-         '8', '9', 'T', 'J', 'Q', 'K', 'X'};   
+   
    
    private char value;
    private Suit suit;
