@@ -59,8 +59,6 @@ public class Assign5
       playLabelText[1] = new JLabel("You", SwingConstants.CENTER);
 
       // add labels to main play area
-      myCardTable.pn1PlayerArea.setLayout(new GridLayout(2, NUM_PLAYERS));
-
       for (k = 0; k < NUM_PLAYERS; k++)
       {
          tempIcon = GUICard.getIcon(generateRandomCard());
