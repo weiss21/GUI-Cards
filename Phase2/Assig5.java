@@ -1,3 +1,6 @@
+
+package Assign4;
+
 /*Team 9 - W. Robleh, M. Mariscal, T. Doan, Y. Nikulyak, C. Piwarski
 * CST338 - Software Design
 * Assignment 5
@@ -60,7 +63,7 @@ public class Assign5
        playLabelText[0] = new JLabel("Computer", JLabel.CENTER);
        for (int i = 1; i < NUM_PLAYERS; i++)
        {
-          playLabelText[i] = new JLabel("Player " + i, JLabel.CENTER);
+          playLabelText[i] = new JLabel("Human" , JLabel.CENTER);
        }
        
        // add labels to main play area
