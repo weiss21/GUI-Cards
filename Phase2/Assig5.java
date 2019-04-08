@@ -6,7 +6,6 @@
 * This class is the main class for Phase 2 of the assignment
 */
 
-package Assign4;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
@@ -27,7 +26,6 @@ public class Assign5
    {
       int k;
       Icon tempIcon;
-      JLabel tempLabel;
       
       // establish main frame in which program will run
       CardTable myCardTable 
@@ -37,7 +35,7 @@ public class Assign5
       myCardTable.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       
       
-      // CREATE LABELS for Computer and Human----------------------------------------------------
+      // CREATE LABELS for Computer and Human
        for (k = 0; k < NUM_CARDS_PER_HAND; k++ )
        {
            tempIcon = GUICard.getIcon(generateRandomCard());
@@ -51,8 +49,8 @@ public class Assign5
        }
           
       // ADD LABELS TO PANELS - Human and Computer
-       myCardTable.pn1ComputerHand.setLayout(new GridLayout(0, NUM_CARDS_PER_HAND));
-       myCardTable.pn1HumanHand.setLayout(new GridLayout(0, NUM_CARDS_PER_HAND));
+       myCardTable.pn1ComputerHand.setLayout(new GridLayout(1, NUM_CARDS_PER_HAND));
+       myCardTable.pn1HumanHand.setLayout(new GridLayout(1, NUM_CARDS_PER_HAND));
        for (k = 0; k < NUM_CARDS_PER_HAND; k++)
        {
            myCardTable.pn1ComputerHand.add(computerLabels[k]);
@@ -60,7 +58,7 @@ public class Assign5
        }
       
        // add labels to main play area
-       myCardTable.pn1PlayerArea.setLayout(new GridLayout(NUM_PLAYERS,1));
+       myCardTable.pn1PlayerArea.setLayout(new GridLayout(2, 2));
        for (k = 0; k < NUM_PLAYERS; k++)
        {  
            
@@ -101,7 +99,8 @@ class CardTable extends JFrame
    /*CardTable(String title, int numCardsPerHand, int numPlayers) 
      The constructor filters input, 
      Adds any panels to the JFrame,  
-   */establishes layouts according to the general description below.
+     establishes layouts according to the general description below.
+     */
    public CardTable(String title, int numCardsPerHand, int numPlayers)
    {
       super(title);
@@ -146,21 +145,18 @@ class GUICard
      private static Icon[][] iconCards = new ImageIcon[14][4]; // 14 = A thru K + joker
      private static Icon iconBack;  //back of the cards image
      private static boolean iconsLoaded = false;    
+     
      //accessor method return card   
      public static Icon getIcon(Card card)
    {
-      if(!iconsLoaded) 
-      {
-         loadCardIcons();
-      }
+      loadCardIcons();
       return iconCards[turnCardValueIntoInt(card)][turnCardSuitIntoInt(card)];     
    }
+     
+     
    public static Icon getBackCardIcon()
    {
-      if(!iconsLoaded) // no need to load more than once
-      {
          loadCardIcons();
-      }
       return iconBack;
 }
    
@@ -379,8 +375,8 @@ class Card
    private char value;
    private Suit suit;
    private boolean errorFlag;
-   private char[] cards = {'A', '2', '3', '4', '5', '6', '7', 
-      '8', '9', 'T', 'J', 'Q', 'K', 'X'};   
+   public static final char[] cards = {'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'X'};
+   public static char[] valueRanks = cards;
 
    public enum Suit 
    {    
@@ -507,9 +503,24 @@ class Card
             this.errorFlag == card.errorFlag);
    }
    
-   public static char[] valueRanks() {
-      return Arrays.copyOf(CARD_VALUES, CARD_VALUES.length);
+ //methods to return card's value
+   public static int cardValue(Card card) {
+      return Card.valueRanks.length - new String(valueRanks).indexOf(card.getValue());
    }
+   
+   public int compareTo(Card card) {
+
+      if (this.value == card.value) {
+         return GUICard.turnCardSuitIntoInt(this) - GUICard.turnCardSuitIntoInt(card);
+      }
+
+      return GUICard.turnCardValueIntoInt(this) - GUICard.turnCardValueIntoInt(card);
+   }
+    
+
+public static char[] valueRanks() {
+   return Arrays.copyOf(Card.cards, Card.cards.length);
+}
    
    static void arraySort(Card[] cards, int arraySize) {
       char[] values = valueRanks();
