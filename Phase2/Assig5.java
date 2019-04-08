@@ -47,10 +47,7 @@ public class Assign5
       }
 
       // ADD LABELS TO PANELS - Human and Computer
-      myCardTable.pn1ComputerHand.setLayout(new GridLayout(1, 
-         NUM_CARDS_PER_HAND));
-      myCardTable.pn1HumanHand.setLayout(new GridLayout(1, 
-         NUM_CARDS_PER_HAND));
+
       for (k = 0; k < NUM_CARDS_PER_HAND; k++)
       {
          myCardTable.pn1ComputerHand.add(computerLabels[k]);
@@ -587,7 +584,6 @@ class Card
    public static int cardValue(Card card)
    {
 
-      //return Card.valueRanks.length - new String(valueRanks).indexOf(card.getValue());
       return GUICard.turnCardValueIntoInt(card) + Card.getSuitValue(card);
       
    }
