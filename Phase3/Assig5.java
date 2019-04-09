@@ -1,4 +1,3 @@
-
 /*Team 9 - W. Robleh, M. Mariscal, T. Doan, Y. Nikulyak, C. Piwarski
 * CST338 - Software Design
 * Assignment 5
@@ -767,6 +766,7 @@ class GUICard
          return Card.Suit.SPADES;
       }
    }
+
 }
 
 /*
@@ -782,14 +782,10 @@ class Card
       public static final int NUM_SUITS = 4;
       public int intValue;
       public char charValue;
-      public char value;
-      public Suit suit = null;
-      private boolean errorFlag = false;
 
       /*
-       * Constructor method for class Card that receives
-       * an integer representing the value, and a char
-       * representing the Suit.
+       * Constructor method that receives an integer for Card
+       * value and char for Suit value.
        */
       Suit(int intValue, char charValue)
       {
@@ -798,8 +794,8 @@ class Card
       }
 
       /*
-       * This method receives an integer and returns the 
-       * associated char in the Suit enum.
+       * This method receives an integer and returns the char
+       * value associated with that Suit.
        */
       public static char valueOf(int integer)
       {
@@ -820,6 +816,11 @@ class Card
    public static final char[] cards =
    { 'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'X' };
    public static char[] valueRanks = cards;
+
+   // Private Data Members:
+   public char value;
+   public Suit suit = null;
+   private boolean errorFlag = false;
 
    /*
     * Constructor method for class Card. This method receives a 
