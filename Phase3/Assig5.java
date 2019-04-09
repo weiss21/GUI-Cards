@@ -767,7 +767,6 @@ class GUICard
          return Card.Suit.SPADES;
       }
    }
-
 }
 
 /*
@@ -783,13 +782,25 @@ class Card
       public static final int NUM_SUITS = 4;
       public int intValue;
       public char charValue;
+      public char value;
+      public Suit suit = null;
+      private boolean errorFlag = false;
 
+      /*
+       * Constructor method for class Card that receives
+       * an integer representing the value, and a char
+       * representing the Suit.
+       */
       Suit(int intValue, char charValue)
       {
          this.intValue = intValue;
          this.charValue = charValue;
       }
 
+      /*
+       * This method receives an integer and returns the 
+       * associated char in the Suit enum.
+       */
       public static char valueOf(int integer)
       {
          for (Suit suit : Suit.values())
@@ -809,11 +820,6 @@ class Card
    public static final char[] cards =
    { 'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'X' };
    public static char[] valueRanks = cards;
-
-   // Private Data Members:
-   public char value;
-   public Suit suit = null;
-   private boolean errorFlag = false;
 
    /*
     * Constructor method for class Card. This method receives a 
