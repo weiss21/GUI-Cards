@@ -665,7 +665,7 @@ class Hand
       // if no more cards in Hand, return a bad card
       if (this.numCards <= 0)
       {
-         return new Card('M', Card.Suit.SPADES);
+         return new Card('Z', Card.Suit.SPADES);
       }
 
       Card returnCard = this.myCards[this.numCards - 1];
@@ -711,7 +711,7 @@ class Hand
       if (k >= 0 && k < numCards)
          return myCards[k];
       else
-         return new Card('M', Card.Suit.SPADES);
+         return new Card('Z', Card.Suit.SPADES);
    }
 
    public void sort()
@@ -850,7 +850,7 @@ class Deck
       if (k >= 0 && k < cards.length)
          return cards[k];
       else
-         return new Card('M', Card.Suit.SPADES);
+         return new Card('Z', Card.Suit.SPADES);
    }
 
    /*
