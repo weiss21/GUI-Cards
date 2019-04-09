@@ -9,8 +9,6 @@
 * a single JFrame. 
 */
 
-package GUICard;
-
 import javax.swing.*;
 import java.awt.*;
 
