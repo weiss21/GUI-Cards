@@ -51,7 +51,7 @@ public class Assign5
       // establish main frame in which program will run
       CardTable myCardTable = new CardTable("CardTable", 
          NUM_CARDS_PER_HAND, NUM_PLAYERS);
-      myCardTable.setSize(800, 600);
+      myCardTable.setSize(800, 625);
       myCardTable.setLocationRelativeTo(null);
       myCardTable.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -122,8 +122,9 @@ public class Assign5
    }
 
    /*
-    * One object of class DelayedGameCheckListener manages a
-    * HandCardMouseListener object.
+    * An action listener for delayed code to execute checking logic 
+    * after a nice delay to a player is able to see game logic and cards 
+    * change (also helper to understand who wins).
     */
    static class DelayedGameCheckListener implements ActionListener
    {
@@ -142,8 +143,8 @@ public class Assign5
    }
 
    /*
-    * One object of class RefreshCompCardListener manages the computer Card
-    * objects.
+    * An action listener for delayed code to show computer's played card with 
+    * a nice delay.
     */
    static class RefreshCompCardListener implements ActionListener
    {
@@ -162,8 +163,8 @@ public class Assign5
    }
 
    /*
-    * One object of class HandCardMouseListener handles mouse 
-    * input for the game.
+    * A mouse listener for each card on a players hand. Contains index of the
+    * card and a reference to CardGameFramework.
     */
    static class HandCardMouseListener implements MouseListener
    {
@@ -181,7 +182,10 @@ public class Assign5
       }
 
       /*
-       * This method interprets a human player's selection.
+       * Makes human move and tests the game logic. Method processes 
+       * two states: when a human is to make the first move 
+       * (lastPlayedCard is null) and when a computer has previously 
+       * made its move (lastPlayedCard} is not null).
        */
       private void makeHumanMove()
       {
@@ -226,7 +230,11 @@ public class Assign5
       }
 
       /*
-       * This method prepares for the next round of High Card.
+       * Checks round and game completion after timeout in
+       * (DelayedGameCheckListener), sets card places with the back of the
+       * cards, makes computer move if computer won last round and 
+       * remembers the result. The method is called every time 
+       * 2 cards are played.
        */
       private void afterAllMoved()
       {
@@ -285,8 +293,8 @@ public class Assign5
          return highestCardIndex;
       }
 
-      /*
-       * This method determines if a round of High Card is finished.
+      /* if no more cards in hands then round finished and we deal, 
+       * reset scores and redraw human hand
        */
       public void checkRoundFinished()
       {
@@ -313,9 +321,8 @@ public class Assign5
          }
       }
 
-      /*
-       * This method determines if the game of High Card 
-       * has reached the end.
+      /* 
+       * if no more cards in deck the game is over, check who wins 
        */
       public void checkGameFinished()
       {
@@ -360,9 +367,9 @@ public class Assign5
          }
       }
 
-      /*
-       * This method redraws the icons to accurately represent 
-       * the Cards they have in their Hand.
+      /* redraw human hand every time 2 cards played to show how many cards 
+       * left in a hand, or after a round ended to show again
+       * full hand of cards
        */
       private void redrawPlayerHand()
       {
@@ -379,8 +386,8 @@ public class Assign5
          }
       }
 
-      /*
-       * This method updates the score JLabels.
+      /* 
+       * show the new score after every 2 cards play 
        */
       public void redrawScore()
       {
@@ -391,8 +398,9 @@ public class Assign5
          }
       }
 
-      /*
-       * This method resets the player scores for the game.
+      /* 
+       * refresh score after each round to start count against to see 
+       * who will win 
        */
       public void resetScores()
       {
@@ -402,8 +410,8 @@ public class Assign5
          }
       }
 
-      /*
-       * This method resets the total scores for the game.
+      /* 
+       * reset winner/loser total scores after game ends 
        */
       public void resetTotalScores()
       {
@@ -539,10 +547,11 @@ class CardTable extends JFrame implements ActionListener
 
       if (buttonString.equals("Exit Game"))
       {
+         System.out.println("Ending Game.");
          System.exit(0);
       } else if (buttonString.equals("Start New Game"))
       {
-         System.out.println("newGameButton Pressed");
+         System.out.println("New Game Started.");
          String[] newGame =
          { "New Game" };
          Assign5.main(newGame);
