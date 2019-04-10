@@ -996,13 +996,44 @@ class Card
    }
 
    /*
-    * This method receives a Card and returns an integer in comparison to the
-    * current Card.
+    * This methods receives Card object and returns a suit value to help
+    * with cardvalue
+    */
+   public static int getSuitValue(Card cards)
+   {
+      if (cards == null)
+      {
+         return -1;
+      }
+      int number = -1;
+      switch (cards.getSuit())
+      {
+      case SPADES:
+         number = 0;
+         break;
+      case HEARTS:
+         number = 14;
+         break;
+      case DIAMONDS:
+         number = 28;
+         break;
+      case CLUBS:
+         number = 42;
+         break;
+      }
+      return number;
+   }
+   
+
+   /*
+    * This method receives a Card and returns an integer in comparison
+    * to the current Card.
     */
    public static int cardValue(Card card)
    {
-      return Card.valueRanks.length - 
-         new String(valueRanks).indexOf(card.getValue());
+
+      return GUICard.turnCardValueIntoInt(card) + Card.getSuitValue(card);
+      
    }
 
    /*
