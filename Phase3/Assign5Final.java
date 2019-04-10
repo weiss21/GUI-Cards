@@ -469,7 +469,7 @@ class CardTable extends JFrame implements ActionListener
    public CardTable(String title, int numCardsPerHand, int numPlayers)
    {
       // filler for now
-      super("Card Game");
+      super(title);
 
       // test parameters validity
       if (numCardsPerHand < 0 || numCardsPerHand > MAX_CARDS_PER_HAND 
