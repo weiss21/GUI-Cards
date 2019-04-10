@@ -1,11 +1,14 @@
 /*Team 9 - W. Robleh, M. Mariscal, T. Doan, Y. Nikulyak, C. Piwarski
- * CST338 - Software Design
- * Assignment 5
- * Phase 3: This part incorporates the game logic with the GUI created in phase 
- * 2. This program creates a game of "High Card" complete with functioning
- * GUI and computer player logic. Players select the card they want to
- * play with their mouse cursor.
- */
+* CST338 - Software Design
+* Assignment 5
+* Phase 3: This part incorporates the game logic with the GUI created in phase 
+* 2. This program creates a game of "High Card" complete with functioning
+* GUI and computer player logic. Players select the card they want to
+* play with their mouse cursor. Player starts every round regardless who was
+* a winner. Only in mini rounds (2 cards play) those moves a card first who
+* won a mini round (took 2 cards). Round ends when no more cards in hands.
+* Game ends when no more cards in deck. 
+*/
 
 import java.awt.*;
 import java.awt.event.*;
