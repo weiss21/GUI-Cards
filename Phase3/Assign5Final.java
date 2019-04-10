@@ -1,11 +1,11 @@
 /*Team 9 - W. Robleh, M. Mariscal, T. Doan, Y. Nikulyak, C. Piwarski
-* CST338 - Software Design
-* Assignment 5
-* Phase 3: This part incorporates the game logic with the GUI created in phase 
-* 2. This program creates a game of "High Card" complete with functioning
-* GUI and computer player logic. Players select the card they want to
-* play with their mouse cursor.
-*/
+ * CST338 - Software Design
+ * Assignment 5
+ * Phase 3: This part incorporates the game logic with the GUI created in phase 
+ * 2. This program creates a game of "High Card" complete with functioning
+ * GUI and computer player logic. Players select the card they want to
+ * play with their mouse cursor.
+ */
 
 import java.awt.*;
 import java.awt.event.*;
