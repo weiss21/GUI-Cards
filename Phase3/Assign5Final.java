@@ -8,10 +8,7 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.border.*;
-
-
 import javax.swing.*;
-import java.util.Arrays;
 
 public class Assign5
 {
